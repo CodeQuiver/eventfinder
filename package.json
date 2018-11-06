@@ -4,8 +4,9 @@
   "description": "Event search app combining weather predictions, event search suggestions, and database to save events for later reference. Uses MERN stack.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PersephoneUnderground/eventfinder.git"
