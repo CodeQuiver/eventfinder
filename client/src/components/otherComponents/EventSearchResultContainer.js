@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from './Event/js';
+import Event from './Event.js';
 import '../../utils/API.js';
 
 class EventSearchResultContainer extends React.Component {
@@ -45,9 +45,7 @@ class EventSearchResultContainer extends React.Component {
     render() {
         return(
             <div>
-                <h4>Your Results: Enjoy!</h4>
-                <small>Nothing here interest you? <a href="#">Search Again.</a> </small>
-                
+               
                 <Event eventData={this.state.eventData[0]} />
             </div>
             
