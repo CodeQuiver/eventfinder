@@ -5,7 +5,10 @@ class ResultsPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            eventData : {
+            search : "",
+            results : [],
+            //eventData will later be an array of entries from the cleaned-up raw results data array above
+            eventData : [{
                 eventName : 
                     "November Evenings at the Edge: After Hours at the National Gallery of Art",
                 eventDescription : 
@@ -33,14 +36,14 @@ class ResultsPage extends React.Component {
                     highTemp : 60.98
                 },
                 ticketInfo : "Free Event, Register Here!"
-            }
+            }]
         }
 
     }
 
     render() {
         return(
-            <Event eventData={this.state.eventData} />
+            <Event eventData={this.state.eventData[0]} />
         );
     }
 }
