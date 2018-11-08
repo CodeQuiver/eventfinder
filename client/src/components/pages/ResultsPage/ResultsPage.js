@@ -1,5 +1,6 @@
 import React from 'react';
 import Event from '../../otherComponents/Event.js';
+import '../../../utils/API.js';
 
 class ResultsPage extends React.Component {
     constructor(props){
