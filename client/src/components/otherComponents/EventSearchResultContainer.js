@@ -71,6 +71,112 @@ class EventSearchResultContainer extends React.Component {
         const thisEvent = startingArray[0];
         console.log("HANDLE EVENTBRITE RESULTS OUTPUT thisEvent: " + JSON.stringify(thisEvent));
 
+        // FOR loop- for each event result:
+        for (let i = 0; i < startingArray.length; i++) {
+            const thisEvent = startingArray[i];
+
+            //===========get each value and store in variable================//
+
+            // event name
+            let eventName = thisEvent.name.text;
+            // console.log("name: " + eventName);
+
+            // description in text or html depending which line we comment out
+            // if we want it in the html tags, comment out the text line and instead use:
+            // let eventDescription = thisEvent.description.html;
+            let eventDescription = thisEvent.description.text;
+            // console.log("description: " + eventDescription);
+
+            // url for eventbrite listing
+            let eventUrl = thisEvent.url;
+            // console.log("url: " + eventUrl);
+
+            // event image- under "logo"
+            let eventImg = thisEvent.logo.url;
+            // console.log("picture url: " + eventImg);
+
+            // ticket availability, true or false- TODO- INSERT "if" PART OF FUNCTION RESULT
+            let ticketsLeft = thisEvent.ticket_availability.has_available_tickets;
+
+                if (ticketsLeft === false) {
+                    continue; // if there are no tickets left to this event, skip the rest of loop entirely and move on to the next event in list.           
+                } else if (ticketsLeft === true) {
+                    ticketsLeft = "Tickets Available Here";
+                }
+
+            // ticket price if applicable
+            let ticketPrice = thisEvent.ticket_availability.minimum_ticket_price.display;
+            // console.log("tickets start at: " + ticketPrice);
+            
+            // time and date
+                // get time and date of event in local timezone- ex. "2018-07-07T11:00:00"
+                let startDateStr = thisEvent.start.local;
+                // translate to user-friendly format
+                let startDateTime = new Date(startDateStr);
+
+                let endDateStr = thisEvent.end.local;
+                let endDateTime = new Date(endDateStr);
+
+                // let dateTime = "Starts: " + startDateTime + "Ends: " + endDateTime;
+                // console.log("Date and Time: " + dateTime);
+
+            // location- name and address
+            let eventVenueName = thisEvent.venue.name;
+            // console.log("venue name: " + eventVenueName);
+
+            let eventAddress = thisEvent.venue.address.localized_address_display;
+            // console.log("address: " + eventAddress);
+
+            // latitude and longitude
+            let eventLatitude = thisEvent.venue.latitude;
+            let eventLongitude = thisEvent.venue.longitude;
+            // console.log("latitude, longitude: " + eventLatitude + ", " + eventLongitude);
+
+            //TODO - Weather function call here, placeholder data for now
+            let eventWeather = {
+                weathDescrip : "light rain",
+                weathIcon : "",
+                lowTemp : 51.98,
+                highTemp : 60.98
+            }
+
+            //TODO - process logic for final "ticketInfo" here, using placeholder data for now
+            let ticketInfo = "Free Event, Register Here!";
+
+            
+            // CONSTRUCTOR FOR EVENT - construct object for each event result
+            EventDataItem = (eventName, eventDescription, eventUrl, eventImg, ticketsLeft, ticketPrice, startDateTime, endDateTime, eventVenueName, eventAddress, eventLatitude, eventLongitude, ticketInfo, eventWeather) => {
+                this.eventName = eventName;
+                this.eventDescription = eventDescription;
+                this.eventUrl = eventUrl;
+                this.eventImg = eventImg;
+                this.ticketsLeft = ticketsLeft;
+                this.ticketPrice = ticketPrice;
+                this.startDateTime = startDateTime;
+                this.endDateTime = endDateTime;
+                this.eventVenueName = eventVenueName;
+                this.eventAddress = eventAddress;
+                this.eventLatitude = eventLatitude;
+                this.eventLongitude = eventLongitude;
+                this.ticketInfo = ticketInfo;
+                this.eventWeather = eventWeather;
+            }
+            // END CONSTRUCTOR FOR EVENT
+
+            // call constructor instance
+            const newEntry = new EventDataItem(eventName, eventDescription, eventUrl, eventImg, ticketsLeft, ticketPrice, startDateTime, endDateTime, eventVenueName, eventAddress, eventLatitude, eventLongitude, ticketInfo, eventWeather);
+
+            console.log("New Array entry event Data for index " + i + " : " + newEntry);
+
+            // push object to endingArray
+            endingArray.push(newEntry);
+        }
+
+        console.log("===============Full ending array of event results: " + endingArray);
+        
+
+        // setState eventData equal to endingArray
+
     };
     // END handle EventBrite Results method
 
