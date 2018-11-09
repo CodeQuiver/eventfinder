@@ -50,86 +50,37 @@ class EventSearchResultContainer extends React.Component {
     // search EventBrite method - sends API call via API.js
     searchEventBrite = (location, category, date, price, keyword) => {
         API.eventSearch(location, category, date, price, keyword)
-          .then(res => {
+            .then(res => {
+                console.log("EVENTBRITE API RESPONSE: " + JSON.stringify(res));
             this.setState({ results: res.data.events });
-            handleEventBriteResults();
-          })
-          .catch(err => console.log(err));
+            this.handleEventBriteResults(this.state.results);
+            })
+            .catch(err => console.log(err));
     };
     // END search EventBrite method
 
+
     // handle EventBrite Results method - contains logic to translate raw results from EventBrite into formatted data to be passed to the output div
-    handleEventBriteResults = () => {
-        const thisEvent = this.state.results[0];
-        console.log(thisEvent);
+    handleEventBriteResults = (rawResults) => {
+        // make a copy of the results array with slice()
+        // manipulate data as needed and push each finalized object into new array
+        // setState of eventData to the new array
+        let startingArray = rawResults.slice();
+        let endingArray = [];
 
-        //===========get each value and store in variable================//
+        const thisEvent = startingArray[0];
+        console.log("HANDLE EVENTBRITE RESULTS OUTPUT thisEvent: " + JSON.stringify(thisEvent));
 
-        // event name
-        let eventName = thisEvent.name.text;
-        // console.log("name: " + eventName);
-
-        // description in text or html depending which line we comment out
-        // if we want it in the html tags, comment out the text line and instead use:
-        // let eventDescription = thisEvent.description.html;
-        let eventDescription = thisEvent.description.text;
-        // console.log("description: " + eventDescription);
-
-        // url for eventbrite listing
-        let eventUrl = thisEvent.url;
-        // console.log("url: " + eventUrl);
-
-        // event image- under "logo"
-        let eventImg = thisEvent.logo.url;
-        // console.log("picture url: " + eventImg);
-
-        // ticket availability, true or false- TODO- INSERT "if" PART OF FUNCTION RESULT
-        let ticketsLeft = thisEvent.ticket_availability.has_available_tickets;
-
-            if (ticketsLeft === false) {
-                continue; // if there are no tickets left to this event, skip the rest of loop entirely and move on to the next event in list.           
-            } else if (ticketsLeft === true) {
-                ticketsLeft = "Tickets Available Here";
-            }
-
-        // ticket price if applicable
-        let ticketPrice = thisEvent.ticket_availability.minimum_ticket_price.display;
-        // console.log("tickets start at: " + ticketPrice);
-        
-        // time and date
-            // get time and date of event in local timezone- ex. "2018-07-07T11:00:00"
-            let startDateStr = thisEvent.start.local;
-            // translate to user-friendly format
-            let startDateTime = new Date(startDateStr);
-
-            let endDateStr = thisEvent.end.local;
-            let endDateTime = new Date(endDateStr);
-
-            // let dateTime = "Starts: " + startDateTime + "Ends: " + endDateTime;
-            // console.log("Date and Time: " + dateTime);
-
-        // location- name and address
-        let eventVenueName = thisEvent.venue.name;
-        // console.log("venue name: " + eventVenueName);
-
-        let eventAddress = thisEvent.venue.address.localized_address_display;
-        // console.log("address: " + eventAddress);
-
-        // latitude and longitude
-        let eventLatitude = thisEvent.venue.latitude;
-        let eventLongitude = thisEvent.venue.longitude;
-        // console.log("latitude, longitude: " + eventLatitude + ", " + eventLongitude);
     };
-
     // END handle EventBrite Results method
+
+
 
     //=========== =========== END METHODS =========== ===========//
 
   // When this component mounts, search the Eventbrite API based on the state
   componentDidMount() {
-    this.searchEventBrite(
-        this.state.eventSearch.location, this.state.eventSearch.category, this.state.eventSearch.date, this.state.eventSearch.price, this.state.eventSearch.keyword
-    );
+    this.searchEventBrite(this.state.eventSearch.location, this.state.eventSearch.category, this.state.eventSearch.date, this.state.eventSearch.price, this.state.eventSearch.keyword)
   }
 
     render() {

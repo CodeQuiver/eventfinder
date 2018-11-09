@@ -101,7 +101,7 @@ class Event extends React.Component {
                         </div>
                             
                         <div className="col s6 right-align white" style={{margin:0 + 'px'}}>
-                            <a href={this.props.eventData.eventUrl} target="_blank">
+                            <a href={this.props.eventData.eventUrl} target="_blank" rel="noopener noreferrer">
                                 {this.props.eventData.ticketInfo}
                             </a>
                         </div>

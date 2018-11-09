@@ -45,7 +45,7 @@ class ResultsPage extends React.Component {
         return(
             <div>
                 <h4>Your Results: Enjoy!</h4>
-                <small>Nothing here interest you? <a href="#">Search Again.</a> </small>
+                <small>Nothing here interest you? <a>Search Again.</a> </small>
 
                 <EventSearchResultContainer />
             </div>
