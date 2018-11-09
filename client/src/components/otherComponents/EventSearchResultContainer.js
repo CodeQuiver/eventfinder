@@ -2,6 +2,13 @@ import React from 'react';
 import Event from './Event.js';
 import API from '../../utils/API.js';
 
+// class EventDataContainer {
+//     constructor(eventName) {
+//         console.log("EventDataContainer.constructor: " + eventName);
+//         this.eventName = eventName;
+//     }
+// }
+
 class EventSearchResultContainer extends React.Component {
     state = {
         //using placeholder event query data until form is set up
@@ -14,7 +21,8 @@ class EventSearchResultContainer extends React.Component {
         },
         results : [],
         //eventData will later be an array of entries from the cleaned-up raw results data array above
-        eventData : [{
+        eventData : [
+            {
             eventName : 
                 "November Evenings at the Edge: After Hours at the National Gallery of Art",
             eventDescription : 
@@ -42,7 +50,8 @@ class EventSearchResultContainer extends React.Component {
                 highTemp : 60.98
             },
             ticketInfo : "Free Event, Register Here!"
-        }]
+        }
+    ]
     }
 
     //=========== =========== METHODS  =========== ===========//
@@ -68,18 +77,18 @@ class EventSearchResultContainer extends React.Component {
         let startingArray = rawResults.slice();
         let endingArray = [];
 
-        const thisEvent = startingArray[0];
-        console.log("HANDLE EVENTBRITE RESULTS OUTPUT thisEvent: " + JSON.stringify(thisEvent));
+        // const thisEvent = startingArray[0];
+        // console.log("HANDLE EVENTBRITE RESULTS OUTPUT thisEvent: " + JSON.stringify(thisEvent));
 
         // FOR loop- for each event result:
         for (let i = 0; i < startingArray.length; i++) {
             const thisEvent = startingArray[i];
-
+            console.log("HANDLE EVENTBRITE RESULTS OUTPUT thisEvent index " + i + " : " + JSON.stringify(thisEvent));
             //===========get each value and store in variable================//
 
             // event name
             let eventName = thisEvent.name.text;
-            // console.log("name: " + eventName);
+            console.log("name: " + eventName);
 
             // description in text or html depending which line we comment out
             // if we want it in the html tags, comment out the text line and instead use:
@@ -92,7 +101,7 @@ class EventSearchResultContainer extends React.Component {
             // console.log("url: " + eventUrl);
 
             // event image- under "logo"
-            let eventImg = thisEvent.logo.url;
+            let eventImg = "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F50473150%2F175032562964%2F1%2Foriginal.jpg?h=200&w=450&auto=compress&rect=0%2C0%2C2160%2C1080&s=19f63befd19bb00ad1837ed52578613e";
             // console.log("picture url: " + eventImg);
 
             // ticket availability, true or false- TODO- INSERT "if" PART OF FUNCTION RESULT
@@ -145,37 +154,43 @@ class EventSearchResultContainer extends React.Component {
 
             
             // CONSTRUCTOR FOR EVENT - construct object for each event result
-            EventDataItem = (eventName, eventDescription, eventUrl, eventImg, ticketsLeft, ticketPrice, startDateTime, endDateTime, eventVenueName, eventAddress, eventLatitude, eventLongitude, ticketInfo, eventWeather) => {
+            function EventDataItem(eventName, eventDescription, eventUrl, eventImg, ticketsLeft, ticketPrice, startDateTime, endDateTime, eventVenueName, eventAddress, eventLatitude, eventLongitude, ticketInfo, eventWeather) {
+                console.log("EventDataItem: " + eventName);
                 this.eventName = eventName;
                 this.eventDescription = eventDescription;
                 this.eventUrl = eventUrl;
                 this.eventImg = eventImg;
                 this.ticketsLeft = ticketsLeft;
                 this.ticketPrice = ticketPrice;
-                this.startDateTime = startDateTime;
-                this.endDateTime = endDateTime;
+                this.startDateTime = JSON.stringify(startDateTime);
+                this.endDateTime = JSON.stringify(endDateTime);
                 this.eventVenueName = eventVenueName;
                 this.eventAddress = eventAddress;
                 this.eventLatitude = eventLatitude;
                 this.eventLongitude = eventLongitude;
                 this.ticketInfo = ticketInfo;
                 this.eventWeather = eventWeather;
-            }
+            };
             // END CONSTRUCTOR FOR EVENT
 
             // call constructor instance
-            const newEntry = new EventDataItem(eventName, eventDescription, eventUrl, eventImg, ticketsLeft, ticketPrice, startDateTime, endDateTime, eventVenueName, eventAddress, eventLatitude, eventLongitude, ticketInfo, eventWeather);
-
-            console.log("New Array entry event Data for index " + i + " : " + newEntry);
+            const instanceEventDataItem = new EventDataItem(eventName, eventDescription, eventUrl, eventImg, ticketsLeft, ticketPrice, startDateTime, endDateTime, eventVenueName, eventAddress, eventLatitude, eventLongitude, ticketInfo, eventWeather);
+            
+            console.log("Emilycat test " + i + ": " + instanceEventDataItem.eventName);
+            console.log("New Array entry event Data for index " + i + " : " + JSON.stringify(instanceEventDataItem));
 
             // push object to endingArray
-            endingArray.push(newEntry);
+            endingArray.push(instanceEventDataItem);
         }
 
-        console.log("===============Full ending array of event results: " + endingArray);
+        console.log("===============Full ending array of event results: " + JSON.stringify(endingArray));
         
 
         // setState eventData equal to endingArray
+        this.setState({eventData : endingArray});
+
+        console.log("======================================= NEW EVENT DATA STATE : " + JSON.stringify(this.state.eventData) );
+        
 
     };
     // END handle EventBrite Results method
