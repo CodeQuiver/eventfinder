@@ -23,7 +23,7 @@ class Event extends React.Component {
         //object - class DateTime - EndDateTime
 
     
-    render(props) {
+    render() {
         return(
             <div className="Event event-div card medium horizontal col s12" id="event-0" data-lat="38.8904614" data-long="-77.01756410000002">
                 <div className="card-image">
