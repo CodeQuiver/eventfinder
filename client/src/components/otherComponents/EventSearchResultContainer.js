@@ -70,6 +70,22 @@ class EventSearchResultContainer extends React.Component {
     };
     // END search EventBrite method
 
+    //search DARKSKY weather method
+        //TODO - ADD CREDIT TO DARKSKY SOMEWHERE ON PAGE
+        //Time Machine Request Format: https://api.darksky.net/forecast/[key]/[latitude],[longitude],[time]?exclude=currently,minutely,flags
+
+        // Icon info: icon
+        // A machine-readable text summary of this data point, suitable for selecting an icon for display. If defined, this property will have one of the following values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night. Be sure to also set a default.
+
+        //Output of this method should return an object like this: (temps default to degrees F, so no need to convert)
+        // {
+        //     weathDescrip : "light rain",
+        //     weathIcon : "",
+        //     lowTemp : 51.98,
+        //     highTemp : 60.98
+        // }
+
+    //END search DARKSKY weather method
 
     // handle EventBrite Results method - contains logic to translate raw results from EventBrite into formatted data to be passed to the output div
     handleEventBriteResults = (rawResults) => {
