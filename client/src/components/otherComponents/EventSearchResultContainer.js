@@ -62,8 +62,9 @@ class EventSearchResultContainer extends React.Component {
         API.eventSearch(location, category, date, price, keyword)
             .then(res => {
                 console.log("EVENTBRITE API RESPONSE: " + JSON.stringify(res));
-            this.setState({ results: res.data.events });
-            this.handleEventBriteResults(this.state.results);
+
+                this.setState({ results: res.data.events });
+                this.handleEventBriteResults(this.state.results);
             })
             .catch(err => console.log(err));
     };
@@ -105,6 +106,7 @@ class EventSearchResultContainer extends React.Component {
             let eventImg = thisEvent.logo.original.url;
             // console.log("picture url: " + eventImg);
 
+            // TICKET INFO LOGIC
             // ticket availability, true or false- TODO- INSERT "if" PART OF FUNCTION RESULT
             let ticketsLeft = thisEvent.ticket_availability.has_available_tickets;
 
@@ -117,6 +119,24 @@ class EventSearchResultContainer extends React.Component {
             // ticket price if applicable
             let ticketPrice = thisEvent.ticket_availability.minimum_ticket_price.display;
             // console.log("tickets start at: " + ticketPrice);
+
+            let ticketInfo = "none";
+
+            if (ticketsLeft && ticketPrice && ticketPrice!="0.00 USD") {
+                    // if tickets are left and the price is specified
+                    ticketInfo = ticketsLeft + ", starting at $" + ticketPrice + ".";
+                } 
+            else if (ticketsLeft && thisEvent.is_free==true) {
+                    ticketInfo = "Free Event, Register Here!";
+                }
+            else if (ticketsLeft) {
+                    ticketInfo = ticketsLeft + "!";
+            }
+            else{
+                ticketInfo = "Full Event Listing";
+            }
+                //if none of the conditions apply, set ticktInfo to the text above- ticketInfo contains the text that will be printed on the event listing link, so this is the default text
+            // END TICKET INFO LOGIC
             
             // time and date
                 // get time and date of event in local timezone- ex. "2018-07-07T11:00:00"
@@ -149,9 +169,6 @@ class EventSearchResultContainer extends React.Component {
                 lowTemp : 51.98,
                 highTemp : 60.98
             }
-
-            //TODO - process logic for final "ticketInfo" here, using placeholder data for now
-            let ticketInfo = "Free Event, Register Here!";
 
             
             // CONSTRUCTOR FOR EVENT - construct object for each event result
