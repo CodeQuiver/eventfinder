@@ -121,20 +121,27 @@ class EventSearchResultContainer extends React.Component {
             // console.log("tickets start at: " + ticketPrice);
 
             let ticketInfo = "none";
-
-            if (ticketsLeft && ticketPrice && ticketPrice!="0.00 USD") {
+            
+            
+            const ticketTextLogic= () => {
+                if (ticketsLeft && ticketPrice && ticketPrice!=="0.00 USD") {
                     // if tickets are left and the price is specified
-                    ticketInfo = ticketsLeft + ", starting at $" + ticketPrice + ".";
+                    return ticketsLeft + ", starting at $" + ticketPrice + ".";
                 } 
-            else if (ticketsLeft && thisEvent.is_free==true) {
-                    ticketInfo = "Free Event, Register Here!";
+                else if (ticketsLeft && thisEvent.is_free===true) {
+                    return "Free Event, Register Here!";
+                    }
+                else if (ticketsLeft) {
+                    return ticketsLeft + "!";
                 }
-            else if (ticketsLeft) {
-                    ticketInfo = ticketsLeft + "!";
+                else{
+                    return "Full Event Listing";
+                }
             }
-            else{
-                ticketInfo = "Full Event Listing";
-            }
+
+            ticketInfo = ticketTextLogic();
+
+            
                 //if none of the conditions apply, set ticktInfo to the text above- ticketInfo contains the text that will be printed on the event listing link, so this is the default text
             // END TICKET INFO LOGIC
             

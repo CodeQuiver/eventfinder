@@ -1,7 +1,14 @@
 import axios from "axios";
+import { darksky } from "../config/keys";
+
+// configuration
+require('dotenv').config();
+
 
 const BASEURL = "https://www.eventbriteapi.com/v3/events/search/?";
 const APIKEY = "QOM53KU5KI63LIHHP4CR";
+
+const WEATHAPIKEY = darksky.secret_key;
 
 //hard-coding location as all of Washington DC for now because unclear on exact formatting needed for Eventbrite location searching to work
 // const LOCATION = "Washington%2CDC%2CUSA";
@@ -17,8 +24,11 @@ export default {
 
     return axios.get(queryURL);
   },
-
-  weatherSearch: function(params) {
+  weatherSearch: function() {
       //weather API call goes here
+      const weatherQueryURL = "https://api.darksky.net/forecast/" + WEATHAPIKEY + "/37.8267,-122.4233";
+      console.log("DARKSKY QUERY URL: " + weatherQueryURL);
+
+      return axios.get(weatherQueryURL);
   }
 };
