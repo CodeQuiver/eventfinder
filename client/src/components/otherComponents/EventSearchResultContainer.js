@@ -74,6 +74,12 @@ class EventSearchResultContainer extends React.Component {
         //TODO - ADD CREDIT TO DARKSKY SOMEWHERE ON PAGE
         //Time Machine Request Format: https://api.darksky.net/forecast/[key]/[latitude],[longitude],[time]?exclude=currently,minutely,flags
 
+        // 1- send API request
+        // 2- get raw response and console log for testing
+        // 3- process response to pull out values we want
+            // 3b- optional- assign an icon to the weather found, but this should take low priority, leave blank for now
+        // 4- return weather object to whatever called the function
+
         // Icon info: icon
         // A machine-readable text summary of this data point, suitable for selecting an icon for display. If defined, this property will have one of the following values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night. Be sure to also set a default.
 
