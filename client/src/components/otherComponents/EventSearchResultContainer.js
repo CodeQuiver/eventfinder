@@ -16,7 +16,7 @@ class EventSearchResultContainer extends React.Component {
         eventSearch : {
             location : "Washington%2CDC%2CUSA",
             category : "110",
-            date : "tomorrow",
+            date : "this_week",
             price : "",
             keyword : ""
         },
@@ -102,7 +102,7 @@ class EventSearchResultContainer extends React.Component {
             // console.log("url: " + eventUrl);
 
             // event image- under "logo"
-            let eventImg = "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F50473150%2F175032562964%2F1%2Foriginal.jpg?h=200&w=450&auto=compress&rect=0%2C0%2C2160%2C1080&s=19f63befd19bb00ad1837ed52578613e";
+            let eventImg = thisEvent.logo.original.url;
             // console.log("picture url: " + eventImg);
 
             // ticket availability, true or false- TODO- INSERT "if" PART OF FUNCTION RESULT
