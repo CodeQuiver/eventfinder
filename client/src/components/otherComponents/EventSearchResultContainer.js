@@ -76,7 +76,8 @@ class EventSearchResultContainer extends React.Component {
 
         // 1- send API request
         // 2- get raw response and console log for testing
-        // 3- process response to pull out values we want
+        // 3- process response to pull out values we want: weathDescrip, weathIcon, lowTemp, highTemp
+            // 3a- in addition to already listed values, also pull "alert" block and extract "title" and "uri". This will only print if there's a value for it of course, but if there is it should output the alert title and link (e.g. Tornado Watch, link to weather service). Very important for planning!
             // 3b- optional- assign an icon to the weather found, but this should take low priority, leave blank for now
         // 4- return weather object to whatever called the function
 
@@ -89,6 +90,8 @@ class EventSearchResultContainer extends React.Component {
         //     weathIcon : "",
         //     lowTemp : 51.98,
         //     highTemp : 60.98
+        //     alertTitle: "",
+        //     alertURI: ""
         // }
 
     //END search DARKSKY weather method
