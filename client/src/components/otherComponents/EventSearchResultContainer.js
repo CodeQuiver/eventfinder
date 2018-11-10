@@ -162,8 +162,8 @@ class EventSearchResultContainer extends React.Component {
                 this.eventImg = eventImg;
                 this.ticketsLeft = ticketsLeft;
                 this.ticketPrice = ticketPrice;
-                this.startDateTime = JSON.stringify(startDateTime);
-                this.endDateTime = JSON.stringify(endDateTime);
+                this.startDateTime = (startDateTime).toString();
+                this.endDateTime = (endDateTime).toString();
                 this.eventVenueName = eventVenueName;
                 this.eventAddress = eventAddress;
                 this.eventLatitude = eventLatitude;
@@ -176,7 +176,7 @@ class EventSearchResultContainer extends React.Component {
             // call constructor instance
             const instanceEventDataItem = new EventDataItem(eventName, eventDescription, eventUrl, eventImg, ticketsLeft, ticketPrice, startDateTime, endDateTime, eventVenueName, eventAddress, eventLatitude, eventLongitude, ticketInfo, eventWeather);
             
-            console.log("Emilycat test " + i + ": " + instanceEventDataItem.eventName);
+            console.log("Test " + i + ": " + instanceEventDataItem.eventName);
             console.log("New Array entry event Data for index " + i + " : " + JSON.stringify(instanceEventDataItem));
 
             // push object to endingArray
