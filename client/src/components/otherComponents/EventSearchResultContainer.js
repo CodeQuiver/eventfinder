@@ -66,6 +66,7 @@ class EventSearchResultContainer extends React.Component {
 
                 this.setState({ results: res.data.events });
                 this.handleEventBriteResults(this.state.results);
+                
             })
             .catch(err => console.log(err));
     };
@@ -82,9 +83,10 @@ class EventSearchResultContainer extends React.Component {
     weatherSearch = (latitude, longitude, dateTime) => {
         API.weatherSearch(latitude, longitude, dateTime)
             .then(res => {
-                console.log("DARKSKY API RESPONSE: " + JSON.stringify(res));
+                // console.log("DARKSKY API RESPONSE: " + JSON.stringify(res));
+                return "DARKSKY API RESPONSE: " + JSON.stringify(res);
 
-                return this.handleDarkSkyResults(res);
+                // return this.handleDarkSkyResults(res);
                 // 4- return weather object to whatever called the function
             })
             .catch(err => console.log(err));
@@ -108,7 +110,7 @@ class EventSearchResultContainer extends React.Component {
         //     alertURI: ""
         // }
     handleDarkSkyResults = (res) => {
-
+        console.log("DARKSKY results handler function triggered.");
     }
 
     //END DARKSKY RESPONSE HANDLER METHOD
@@ -213,6 +215,9 @@ class EventSearchResultContainer extends React.Component {
             // console.log("latitude, longitude: " + eventLatitude + ", " + eventLongitude);
 
             //TODO - Weather function call here, placeholder data for now
+            console.log(this.weatherSearch(-77.03, 38.9, this.startDateStr)); //TESTING API call
+            
+
             let eventWeather = {
                 weathDescrip : "light rain",
                 weathIcon : "",
