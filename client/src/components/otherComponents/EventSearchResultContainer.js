@@ -71,20 +71,33 @@ class EventSearchResultContainer extends React.Component {
     };
     // END search EventBrite method
 
+
     //search DARKSKY weather method
         //TODO - ADD CREDIT TO DARKSKY SOMEWHERE ON PAGE
-        //Time Machine Request Format: https://api.darksky.net/forecast/[key]/[latitude],[longitude],[time]?exclude=currently,minutely,flags
-
+        // DARKSKY Icon info: icon
+        // A machine-readable text summary of this data point, suitable for selecting an icon for display. If defined, this property will have one of the following values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night. Be sure to also set a default.
+        
         // 1- send API request
         // 2- get raw response and console log for testing
+    weatherSearch = (latitude, longitude, dateTime) => {
+        API.weatherSearch(latitude, longitude, dateTime)
+            .then(res => {
+                console.log("DARKSKY API RESPONSE: " + JSON.stringify(res));
+
+                return this.handleDarkSkyResults(res);
+                // 4- return weather object to whatever called the function
+            })
+            .catch(err => console.log(err));
+    }
+    //END search DARKSKY weather method
+               
+
+
+    //DARKSKY RESPONSE HANDLER METHOD
         // 3- process response to pull out values we want: weathDescrip, weathIcon, lowTemp, highTemp
-            // 3a- in addition to already listed values, also pull "alert" block and extract "title" and "uri". This will only print if there's a value for it of course, but if there is it should output the alert title and link (e.g. Tornado Watch, link to weather service). Very important for planning!
-            // 3b- optional- assign an icon to the weather found, but this should take low priority, leave blank for now
-        // 4- return weather object to whatever called the function
-
-        // Icon info: icon
-        // A machine-readable text summary of this data point, suitable for selecting an icon for display. If defined, this property will have one of the following values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night. Be sure to also set a default.
-
+        // 3a- in addition to already listed values, also pull "alert" block and extract "title" and "uri". This will only print if there's a value for it of course, but if there is it should output the alert title and link (e.g. Tornado Watch, link to weather service). Very important for planning!
+        // 3b- optional- assign an icon to the weather found, but this should take low priority, leave blank for now
+        
         //Output of this method should return an object like this: (temps default to degrees F, so no need to convert)
         // {
         //     weathDescrip : "light rain",
@@ -94,8 +107,12 @@ class EventSearchResultContainer extends React.Component {
         //     alertTitle: "",
         //     alertURI: ""
         // }
+    handleDarkSkyResults = (res) => {
 
-    //END search DARKSKY weather method
+    }
+
+    //END DARKSKY RESPONSE HANDLER METHOD
+
 
     // handle EventBrite Results method - contains logic to translate raw results from EventBrite into formatted data to be passed to the output div
     handleEventBriteResults = (rawResults) => {
