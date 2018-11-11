@@ -1,7 +1,4 @@
 import React from 'react';
-import 'materialize-css/dist/css/materialize.min.css';
-import M from 'materialize-css/dist/js/materialize.min.js';
-M.AutoInit();
 
 //========= EVENT ==========//
 class Event extends React.Component {

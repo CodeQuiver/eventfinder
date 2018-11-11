@@ -1,8 +1,6 @@
 import React from 'react';
 import Event from './Event.js';
 import API from '../../utils/API.js';
-import M from 'materialize-css/dist/js/materialize.min.js';
-M.AutoInit();
 
 // class EventDataContainer {
 //     constructor(eventName) {
