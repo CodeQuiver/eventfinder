@@ -6,33 +6,53 @@ class SearchForm extends React.Component {
     render() {
         return(
             <div className = "SearchForm container">
-                FORM GOES HERE
-                <form action="#">
-    <p>
-      <label>
-        <input name="group1" type="radio" checked />
-        <span>Red</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input name="group1" type="radio" />
-        <span>Yellow</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input class="with-gap" name="group1" type="radio"  />
-        <span>Green</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input name="group1" type="radio" disabled="disabled" />
-        <span>Brown</span>
-      </label>
-    </p>
-  </form>
+            <h5>
+                Search Upcoming Events in Your Area!
+            </h5>
+                
+            <div className="row">
+                <form className="col s12">
+                <div className="row">
+                    <div className="input-field col s6">
+                    <input placeholder="Placeholder" id="first_name" type="text" className="validate" />
+                    <label for="first_name">First Name</label>
+                    </div>
+                    <div className="input-field col s6">
+                    <input id="last_name" type="text" className="validate" />
+                    <label for="last_name">Last Name</label>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="input-field col s12">
+                    <input disabled value="I am not editable" id="disabled" type="text" className="validate" />
+                    <label for="disabled">Disabled</label>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="input-field col s12">
+                    <input id="password" type="password" className="validate" />
+                    <label for="password">Password</label>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="input-field col s12">
+                    <input id="email" type="email" className="validate" />
+                    <label for="email">Email</label>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col s12">
+                    This is an inline input field:
+                    <div className="input-field inline">
+                        <input id="email_inline" type="email" className="validate" />
+                        <label for="email_inline">Email</label>
+                        <span className="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        
             </div>
         )
     }

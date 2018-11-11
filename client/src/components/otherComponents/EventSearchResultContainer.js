@@ -2,6 +2,7 @@ import React from 'react';
 import Event from './Event.js';
 import API from '../../utils/API.js';
 
+
 // class EventDataContainer {
 //     constructor(eventName) {
 //         console.log("EventDataContainer.constructor: " + eventName);
@@ -13,9 +14,12 @@ class EventSearchResultContainer extends React.Component {
     state = {
         //using placeholder event query data until form is set up
         eventSearch : {
-            location : "Washington%2CDC%2CUSA",
+            zip : "",
+            city : "Washington",
+            state : "DC",            
+            sorting : "best",
             category : "110",
-            date : "this_week",
+            date : "next_week",
             price : "",
             keyword : ""
         },
@@ -30,7 +34,7 @@ class EventSearchResultContainer extends React.Component {
             eventUrl : 
                 "https://www.eventbrite.com/e/november-evenings-at-the-edge-after-hours-at-the-national-gallery-of-art-registration-50751269413?aff=ebapi",
             eventImg : 
-                "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F50473150%2F175032562964%2F1%2Foriginal.jpg?h=200&w=450&auto=compress&rect=0%2C0%2C2160%2C1080&s=19f63befd19bb00ad1837ed52578613e",
+                "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F50311872%2F144997575536%2F1%2Foriginal.jpg?auto=compress&s=b6262ff4b0cc2c260bb2797fbf61429c",
             ticketsLeft : 
                 "",
             ticketPrice : 
@@ -57,8 +61,8 @@ class EventSearchResultContainer extends React.Component {
     //=========== =========== METHODS  =========== ===========//
 
     // search EventBrite method - sends API call via API.js
-    searchEventBrite = (location, category, date, price, keyword) => {
-        API.eventSearch(location, category, date, price, keyword)
+    searchEventBrite = (zip, city, state, sorting, category, date, price, keyword) => {
+        API.eventSearch(zip, city, state, sorting, category, date, price, keyword)
             .then(res => {
                 console.log("EVENTBRITE API RESPONSE: " + JSON.stringify(res));
 
@@ -272,7 +276,7 @@ class EventSearchResultContainer extends React.Component {
 
   // When this component mounts, search the Eventbrite API based on the state
   componentDidMount() {
-    this.searchEventBrite(this.state.eventSearch.location, this.state.eventSearch.category, this.state.eventSearch.date, this.state.eventSearch.price, this.state.eventSearch.keyword)
+    this.searchEventBrite(this.state.eventSearch.zip, this.state.eventSearch.city, this.state.eventSearch.state, this.state.eventSearch.sorting, this.state.eventSearch.category, this.state.eventSearch.date, this.state.eventSearch.price, this.state.eventSearch.keyword)
   }
 
     render() {
