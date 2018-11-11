@@ -25,8 +25,8 @@ class Event extends React.Component {
     
     render() {
         return(
-            <div className="Event event-div card medium horizontal col s12" id="event-0" data-lat="38.8904614" data-long="-77.01756410000002">
-                <div className="card-image">
+            <div className="Event event-div card small horizontal col s12" id="event-0" data-lat="38.8904614" data-long="-77.01756410000002">
+                <div className="card-image responsive-img">
 
                     <img className="responsive-img"
                     
@@ -38,74 +38,81 @@ class Event extends React.Component {
 
                 </div>
                 <div className="card-stacked">
-                    <h5 className="card-title">
+                    <h5 className="card-title" style={{paddingTop: 10 + 'px', paddingBottom: 10 + 'px', paddingLeft: 24 + 'px', paddingRight: 24 + 'px', margin:0, borderBottom: 1 + 'px solid rgba(160,160,160,0.2)'}}>
                         {this.props.eventData.eventName}
                     </h5>
-                    
-                    <div className="card-content left-align" style={{overflow: 'scroll'}} >
-                        <p>
-                            <span style={{fontWeight:'bold'}}>Starts: </span>
-                            {this.props.eventData.startDateTime}
-                        </p>
-                        
-                        <p>
-                            <span style={{fontWeight:'bold'}}>Ends: </span>
-                            {this.props.eventData.endDateTime}
-                            
-                        </p>
-                        
-                        <p>
-                            <span style={{fontWeight:'bold'}}>Location: </span>
-                            {this.props.eventData.eventVenueName}
-                        </p>
-                        
-                        <p>
-                            {this.props.eventData.eventAddress}
-                        </p>
-                        
-                        <p>
-                            <span style={{fontWeight:'bold'}}>Description: </span>
-                            {this.props.eventData.eventDescription}
-                            
-                            <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp;
-                        </p>
-                        
-                    </div>
-                    
-                    <div className="card-action white">
-                        <div className="col s6 left-align cyan lighten-5" style={{margin:0 + 'px'}}>
-                            <h5 className="left-align">
-                                <i className="material-icons">cloud_done</i>
-                                &nbsp;RAINCHECK&nbsp;
-                                <i className="material-icons">cloud_done</i>
-                            </h5>
-                            
-                            <small>Today's Weather at this location:</small>
-                            
-                            <div id="weather-div">
-                                <div style={{fontSize: 20 + 'px', textTransform:'uppercase'}} >
-                                    {this.props.eventData.eventWeather.weathDescrip}
 
-                                    {this.props.eventData.eventWeather.weathIcon}
-                                </div>
-                                <span>
-                                    <span style={{fontWeight:'bold'}}>Low:&nbsp;</span>
-                                    {this.props.eventData.eventWeather.lowTemp}&nbsp;℉ |&nbsp; 
-                                </span>
+                    <div className="card-content" style={{padding: 0, margin:0}}>
+                        <div className="card-content left-align" style={{overflow: 'scroll', paddingTop: 0, paddingBottom: 0, margin:0}} >
+                            <p>
+                                <span style={{fontWeight:'bold'}}>Starts: </span>
+                                {this.props.eventData.startDateTime}
+                            </p>
+                            
+                            <p>
+                                <span style={{fontWeight:'bold'}}>Ends: </span>
+                                {this.props.eventData.endDateTime}
                                 
-                                <span>
-                                    <span style={{fontWeight:'bold'}}>High:&nbsp;</span>
-                                    {this.props.eventData.eventWeather.highTemp}&nbsp;℉ <br />
-                                </span>
+                            </p>
+                            
+                            <p>
+                                <span style={{fontWeight:'bold'}}>Location: </span>
+                                {this.props.eventData.eventVenueName}
+                            </p>
+                            
+                            <p>
+                                {this.props.eventData.eventAddress}
+                            </p>
+                            
+                            <p>
+                                <span style={{fontWeight:'bold'}}>Description: </span>
+                                {this.props.eventData.eventDescription}
+                                
+                                <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp;
+                            </p>
+                            
+                        </div>
+                        <div className="card-content row">
+                            <div className="card-action white" style={{margin:0 + 'px', paddingTop: 0, paddingBottom: 0}}>
+                                <div className="col s6 left-align cyan lighten-5" style={{margin:0 + 'px', paddingTop: 5 + 'px', paddingBottom: 5 + 'px'}}>
+                                    <h5 className="left-align" style={{margin:0 + 'px', padding: 5 + 'px'}}>
+                                        <i className="material-icons">cloud_done</i>
+                                        &nbsp;RAINCHECK&nbsp;
+                                        <i className="material-icons">cloud_done</i>
+                                    </h5>
+                                    
+                                    <small>Today's Weather at this location:</small>
+                                    
+                                    <div id="weather-div">
+                                        <div style={{fontSize: 20 + 'px', textTransform:'uppercase'}} >
+                                            {this.props.eventData.eventWeather.weathDescrip}
+
+                                            {this.props.eventData.eventWeather.weathIcon}
+                                        </div>
+                                        <span>
+                                            <span style={{fontWeight:'bold'}}>Low:&nbsp;</span>
+                                            {this.props.eventData.eventWeather.lowTemp}&nbsp;℉ |&nbsp; 
+                                        </span>
+                                        
+                                        <span>
+                                            <span style={{fontWeight:'bold'}}>High:&nbsp;</span>
+                                            {this.props.eventData.eventWeather.highTemp}&nbsp;℉ <br />
+                                        </span>
+                                    </div>
+                                </div>
+                                    
+                                <div className="col s6 right-align white" style={{margin:0 + 'px', padding: 5 + 'px'}}>
+                                    <a href={this.props.eventData.eventUrl} target="_blank" rel="noopener noreferrer">
+                                        {this.props.eventData.ticketInfo}
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                            
-                        <div className="col s6 right-align white" style={{margin:0 + 'px'}}>
-                            <a href={this.props.eventData.eventUrl} target="_blank" rel="noopener noreferrer">
-                                {this.props.eventData.ticketInfo}
-                            </a>
-                        </div>
                     </div>
+                    
+                    
+                    
+
                 </div>
             </div>
         );

@@ -7,7 +7,7 @@ import SearchForm from './components/otherComponents/SearchForm.js';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div >
           <SearchForm />
         
           <ResultsPage />

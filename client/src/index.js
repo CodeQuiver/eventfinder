@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-M.AutoInit();
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
