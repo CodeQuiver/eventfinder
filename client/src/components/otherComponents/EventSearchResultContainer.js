@@ -215,7 +215,7 @@ class EventSearchResultContainer extends React.Component {
             // console.log("latitude, longitude: " + eventLatitude + ", " + eventLongitude);
 
             //TODO - Weather function call here, placeholder data for now
-            console.log(this.weatherSearch(-77.03, 38.9, this.startDateStr)); //TESTING API call
+            // console.log(this.weatherSearch(-77.03, 38.9, this.startDateStr)); //TESTING API call
             
 
             let eventWeather = {
