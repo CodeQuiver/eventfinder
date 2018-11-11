@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './materialize/css/materialize.min.css';
+import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css/dist/js/materialize.min.js';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+M.AutoInit();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
