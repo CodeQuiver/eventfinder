@@ -25,8 +25,10 @@ class EventSearchResultContainer extends React.Component {
         },
         results : [],
         //eventData will later be an array of entries from the cleaned-up raw results data array above
-        eventData : [
+        eventData: [],
+        eventData1 : [
             {
+            eventId: "default",
             eventName : 
                 "November Evenings at the Edge: After Hours at the National Gallery of Art",
             eventDescription : 
@@ -232,8 +234,9 @@ class EventSearchResultContainer extends React.Component {
 
             
             // CONSTRUCTOR FOR EVENT - construct object for each event result
-            function EventDataItem(eventName, eventDescription, eventUrl, eventImg, ticketsLeft, ticketPrice, startDateTime, endDateTime, eventVenueName, eventAddress, eventLatitude, eventLongitude, ticketInfo, eventWeather) {
+            function EventDataItem(eventId, eventName, eventDescription, eventUrl, eventImg, ticketsLeft, ticketPrice, startDateTime, endDateTime, eventVenueName, eventAddress, eventLatitude, eventLongitude, ticketInfo, eventWeather) {
                 console.log("EventDataItem: " + eventName);
+                this.eventId = eventId;
                 this.eventName = eventName;
                 this.eventDescription = eventDescription;
                 this.eventUrl = eventUrl;
@@ -252,7 +255,7 @@ class EventSearchResultContainer extends React.Component {
             // END CONSTRUCTOR FOR EVENT
 
             // call constructor instance
-            const instanceEventDataItem = new EventDataItem(eventName, eventDescription, eventUrl, eventImg, ticketsLeft, ticketPrice, startDateTime, endDateTime, eventVenueName, eventAddress, eventLatitude, eventLongitude, ticketInfo, eventWeather);
+            const instanceEventDataItem = new EventDataItem(i, eventName, eventDescription, eventUrl, eventImg, ticketsLeft, ticketPrice, startDateTime, endDateTime, eventVenueName, eventAddress, eventLatitude, eventLongitude, ticketInfo, eventWeather);
             
             console.log("Test " + i + ": " + instanceEventDataItem.eventName);
             console.log("New Array entry event Data for index " + i + " : " + JSON.stringify(instanceEventDataItem));
@@ -282,13 +285,27 @@ class EventSearchResultContainer extends React.Component {
     this.searchEventBrite(this.state.eventSearch.zip, this.state.eventSearch.city, this.state.eventSearch.state, this.state.eventSearch.sorting, this.state.eventSearch.category, this.state.eventSearch.date, this.state.eventSearch.price, this.state.eventSearch.keyword)
   }
 
+    renderOneEvent(myEvent) {
+        return (
+                <Event key={myEvent.eventId.toString()} eventData={myEvent} />
+        );
+    }
+
+    renderAllItems() {
+        const listItems = this.state.eventData.map(this.renderOneEvent);
+
+        if (listItems.length == 0) { 
+            return (<div>No results found.</div>);
+        }
+
+        return (<div>{listItems}</div>);
+    }
+
     render() {
-        return(
-            <div>
-               
-                <Event eventData={this.state.eventData[0]} />
-            </div>
-            
+        return (
+            <div>{
+                this.renderAllItems()
+            }</div>
         );
     }
 }
