@@ -117,7 +117,6 @@ class EventSearchResultContainer extends React.Component {
 
     //END DARKSKY RESPONSE HANDLER METHOD
 
-
     // handle EventBrite Results method - contains logic to translate raw results from EventBrite into formatted data to be passed to the output div
     handleEventBriteResults = (rawResults) => {
         // make a copy of the results array with slice()
@@ -132,7 +131,7 @@ class EventSearchResultContainer extends React.Component {
         // FOR loop- for each event result:
         for (let i = 0; i < startingArray.length; i++) {
             const thisEvent = startingArray[i];
-            console.log("HANDLE EVENTBRITE RESULTS OUTPUT thisEvent index " + i + " : " + JSON.stringify(thisEvent));
+            //console.log("HANDLE EVENTBRITE RESULTS OUTPUT thisEvent index " + i + " : " + JSON.stringify(thisEvent));
             //===========get each value and store in variable================//
 
             // event name
@@ -150,7 +149,11 @@ class EventSearchResultContainer extends React.Component {
             // console.log("url: " + eventUrl);
 
             // event image- under "logo"
-            let eventImg = thisEvent.logo.original.url;
+            console.log("HANDLE EVENTBRITE RESULTS OUTPUT thisEvent index " + i + " : " + JSON.stringify(thisEvent));
+            let eventImg = "./images/default_event_image.jpg";
+            if (thisEvent.logo && thisEvent.logo.original && thisEvent.logo.original.url) {
+                eventImg = thisEvent.logo.original.url;
+            }
             // console.log("picture url: " + eventImg);
 
             // TICKET INFO LOGIC
