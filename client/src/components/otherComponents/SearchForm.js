@@ -1,11 +1,11 @@
 import React from 'react';
-import EventSearchResultContainer from './EventSearchResultContainer.js'; //importing so I can pass it props later for the API call
 
 class SearchForm extends React.Component {
 
+
     render() {
         return(
-            <div className = "search-form container">
+            <div className = "SearchForm container">
                 <h4 className="center-align">
                     Search Upcoming Events in Your Area!
                 </h4>
@@ -20,7 +20,10 @@ class SearchForm extends React.Component {
                         {/* WHEN */}
                         <div className="row">
                             <div className="input-field col s12">
-                                <select id="date-field" className="date" required="required" style={{display: 'block'}}>
+                                <select id="date-field" className="date"
+                                onChange={this.props.handleInputChange}
+                                value={this.props.eventSearch}
+                                required="required" style={{display: 'block'}}>
                                     <option disabled selected>When? (required)</option>
                                     <option value="today">Today</option>
                                     <option value="tomorrow">Tomorrow</option>
@@ -36,12 +39,16 @@ class SearchForm extends React.Component {
                         {/* WHERE */}
                         <div class="row">
                             <div class="input-field col m8 s12">
-                                <input placeholder="City" id="city-field" type="text" required="required" class="validate" />
+                                <input placeholder="City" id="city-field" type="text" required="required" class="validate"
+                                onChange={this.props.handleInputChange}
+                                value={this.props.eventSearch} />
                                 <label for="city-field">Where? (required)</label>
                             </div>
 
                             <div className="input-field col m4 s12">
-                                <select id="state-field" className="date" required="required" style={{display: 'block'}}>
+                                <select id="state-field" className="date" required="required"
+                                onChange={this.props.handleInputChange}
+                                style={{display: 'block'}}>
                                     <option disabled selected>State</option>
                                     <option value="AL">Alabama</option>
                                     <option value="AK">Alaska</option>
@@ -104,7 +111,9 @@ class SearchForm extends React.Component {
                         {/* EVENT CATEGORY */}
                         <div className="row">
                             <div className="input-field col s12">
-                                <select className="categories" style={{display: 'block'}}>
+                                <select className="categories"
+                                onChange={this.props.handleInputChange}
+                                style={{display: 'block'}}>
                                     <option selected>Type Of Event</option>
                                     <option value="104">Film, Media &amp; Entertainment</option>
                                     <option value="110">Food &amp; Drink</option>
@@ -123,7 +132,9 @@ class SearchForm extends React.Component {
                         <div className="row">
                             {/* EVENT PRICE */}
                             <div className="input-field col m6 s12">
-                                <select className="price" style={{display: 'block'}}>
+                                <select className="price"
+                                onChange={this.props.handleInputChange}
+                                style={{display: 'block'}}>
                                     <option selected>Price</option>
                                     <option value="free">Free Event</option>
                                     <option value="paid">Paid Event</option>
@@ -134,7 +145,9 @@ class SearchForm extends React.Component {
 
                             {/* SORT BY */}
                             <div className="input-field col m6 s12">
-                                <select className="price" style={{display: 'block'}}>
+                                <select className="price"
+                                onChange={this.props.handleInputChange} 
+                                style={{display: 'block'}}>
                                     <option selected>Sort Results By:</option>
                                     <option value="best">Best Match (default)</option>
                                     <option value="paid">Distance</option>
@@ -148,7 +161,10 @@ class SearchForm extends React.Component {
                         {/* SEARCH KEYWORD */}
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="keyword" type="text" className="validate" />
+                                <input id="keyword"
+                                onChange={this.props.handleInputChange}
+                                value={this.props.eventSearch}
+                                type="text" className="validate" />
                                 <label for="keyword">Keyword to Search (optional) - e.g. "Salsa"</label>
                             </div>
                         </div>
@@ -157,7 +173,7 @@ class SearchForm extends React.Component {
                         {/* SUBMIT BUTTON */}
                         <button class="btn waves-effect waves-light" 
                         type="submit" id="submit"
-                         name="action"  >
+                         name="action" onClick={this.props.handleFormSubmit} >
                          Submit
                         </button>
                         {/* END SUBMIT BUTTON */}

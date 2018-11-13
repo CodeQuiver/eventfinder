@@ -1,53 +1,73 @@
 import React from 'react';
 import EventSearchResultContainer from '../../otherComponents/EventSearchResultContainer.js';
+import SearchForm from '../../otherComponents/SearchForm.js';
+import API from '../../../utils/API.js';
 
 class ResultsPage extends React.Component {
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //         search : "",
-    //         results : [],
-    //         //eventData will later be an array of entries from the cleaned-up raw results data array above
-    //         eventData : [{
-    //             eventName : 
-    //                 "November Evenings at the Edge: After Hours at the National Gallery of Art",
-    //             eventDescription : 
-    //                 "From Light to Dark - It’s time to fall back and we're marking the change in seasons with pop-up talks, art making, and performances. Learn how to paint with light, stargaze on the Gallery’s rooftop terrace, and light up the dance floor with tunes from the sensational DJ Neekola and electric cellist Benjamin Gates. Pop-up talks will explore how artists use light and shadow to enhance their work. Specialty fare and beverages include black-and-white cookies and a dark-and-stormy-inspired cocktail. This program is made possible by a generous grant from The Morris and Gwendolyn Cafritz Foundation.",
-    //             eventUrl : 
-    //                 "https://www.eventbrite.com/e/november-evenings-at-the-edge-after-hours-at-the-national-gallery-of-art-registration-50751269413?aff=ebapi",
-    //             eventImg : 
-    //                 "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F50473150%2F175032562964%2F1%2Foriginal.jpg?h=200&w=450&auto=compress&rect=0%2C0%2C2160%2C1080&s=19f63befd19bb00ad1837ed52578613e",
-    //             ticketsLeft : 
-    //                 "",
-    //             ticketPrice : 
-    //                 "",
-    //             startDateTime : 
-    //                 "Thu Nov 08 2018 18:00:00 GMT-0500 (Eastern Standard Time)",
-    //             endDateTime : 
-    //                 "Thu Nov 08 2018 21:00:00 GMT-0500 (Eastern Standard Time)",
-    //             eventVenueName : "National Gallery of Art",
-    //             eventAddress : "East Building 4th Street NW, Washington, DC 20565",
-    //             eventLatitude : "",
-    //             eventLongitude : "",
-    //             eventWeather : {
-    //                 weathDescrip : "light rain",
-    //                 weathIcon : "",
-    //                 lowTemp : 51.98,
-    //                 highTemp : 60.98
-    //             },
-    //             ticketInfo : "Free Event, Register Here!"
-    //         }]
-    //     }
+    state = {
+        //moving eventSearch state over from EventSearchResultContainer to here, will pass these as props on form submit
+        eventSearch : {
+            zip : "",
+            city : "",
+            state : "",            
+            sorting : "",
+            category : "",
+            date : "",
+            price : "",
+            keyword : ""
+        },
+        results : []
+    };
 
-    // }
+
+    //METHODS//
+
+    // search EventBrite method - sends API call via API.js
+    searchEventBrite = (zip, city, state, sorting, category, date, price, keyword) => {
+        API.eventSearch(zip, city, state, sorting, category, date, price, keyword)
+            .then(res => {
+                console.log("EVENTBRITE API RESPONSE: " + JSON.stringify(res));
+
+                this.setState({ results: res.data.events });
+                
+                
+            })
+            .catch(err => console.log(err));
+    };
+    // END search EventBrite method
+
+    handleInputChange = event => {
+        const name = event.target.name;
+        const value = event.target.value;
+        this.setState({
+            [name]: value
+        });
+    };
+
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        this.searchEventBrite(
+            this.state.eventSearch.zip,
+            this.state.eventSearch.city, 
+            this.state.eventSearch.state, 
+            this.state.eventSearch.sorting, 
+            this.state.eventSearch.category, 
+            this.state.eventSearch.date, 
+            this.state.eventSearch.price, 
+            this.state.eventSearch.keyword);
+    }
+    //END METHODS//
 
     render() {
         return(
             <div>
-                <h4>Your Results: Enjoy!</h4>
-                <small>Nothing here interest you? <a>Search Again.</a> </small>
-
-                <EventSearchResultContainer />
+                <SearchForm
+                    search={this.state.eventSearch}
+                    handleFormSubmit={this.handleFormSubmit}
+                    handleInputChange={this.handleInputChange}
+                />
+                <EventSearchResultContainer results={this.state.results} />
             </div>
             
         );

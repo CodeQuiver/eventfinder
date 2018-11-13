@@ -13,71 +13,47 @@ import API from '../../utils/API.js';
 class EventSearchResultContainer extends React.Component {
     state = {
         //using placeholder event query data until form is set up
-        eventSearch : {
-            zip : "",
-            city : "Washington",
-            state : "DC",            
-            sorting : "best",
-            category : "110",
-            date : "next_week",
-            price : "",
-            keyword : ""
-        },
-        results : [],
+
         //eventData will later be an array of entries from the cleaned-up raw results data array above
-        eventData: [],
-        eventData1 : [
-            {
-            eventId: "default",
-            eventName : 
-                "November Evenings at the Edge: After Hours at the National Gallery of Art",
-            eventDescription : 
-                "From Light to Dark - It’s time to fall back and we're marking the change in seasons with pop-up talks, art making, and performances. Learn how to paint with light, stargaze on the Gallery’s rooftop terrace, and light up the dance floor with tunes from the sensational DJ Neekola and electric cellist Benjamin Gates. Pop-up talks will explore how artists use light and shadow to enhance their work. Specialty fare and beverages include black-and-white cookies and a dark-and-stormy-inspired cocktail. This program is made possible by a generous grant from The Morris and Gwendolyn Cafritz Foundation.",
-            eventUrl : 
-                "https://www.eventbrite.com/e/november-evenings-at-the-edge-after-hours-at-the-national-gallery-of-art-registration-50751269413?aff=ebapi",
-            eventImg : 
-                "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F50311872%2F144997575536%2F1%2Foriginal.jpg?auto=compress&s=b6262ff4b0cc2c260bb2797fbf61429c",
-            ticketsLeft : 
-                "",
-            ticketPrice : 
-                "",
-            startDateTime : 
-                "Thu Nov 08 2018 18:00:00 GMT-0500 (Eastern Standard Time)",
-            endDateTime : 
-                "Thu Nov 08 2018 21:00:00 GMT-0500 (Eastern Standard Time)",
-            eventVenueName : "National Gallery of Art",
-            eventAddress : "East Building 4th Street NW, Washington, DC 20565",
-            eventLatitude : "",
-            eventLongitude : "",
-            eventWeather : {
-                weathDescrip : "light rain",
-                weathIcon : "",
-                lowTemp : 51.98,
-                highTemp : 60.98
-            },
-            ticketInfo : "Free Event, Register Here!"
-        }
-    ]
+        eventData: []
+    //     eventData1 : [
+    //         {
+    //         eventId: "default",
+    //         eventName : 
+    //             "November Evenings at the Edge: After Hours at the National Gallery of Art",
+    //         eventDescription : 
+    //             "From Light to Dark - It’s time to fall back and we're marking the change in seasons with pop-up talks, art making, and performances. Learn how to paint with light, stargaze on the Gallery’s rooftop terrace, and light up the dance floor with tunes from the sensational DJ Neekola and electric cellist Benjamin Gates. Pop-up talks will explore how artists use light and shadow to enhance their work. Specialty fare and beverages include black-and-white cookies and a dark-and-stormy-inspired cocktail. This program is made possible by a generous grant from The Morris and Gwendolyn Cafritz Foundation.",
+    //         eventUrl : 
+    //             "https://www.eventbrite.com/e/november-evenings-at-the-edge-after-hours-at-the-national-gallery-of-art-registration-50751269413?aff=ebapi",
+    //         eventImg : 
+    //             "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F50311872%2F144997575536%2F1%2Foriginal.jpg?auto=compress&s=b6262ff4b0cc2c260bb2797fbf61429c",
+    //         ticketsLeft : 
+    //             "",
+    //         ticketPrice : 
+    //             "",
+    //         startDateTime : 
+    //             "Thu Nov 08 2018 18:00:00 GMT-0500 (Eastern Standard Time)",
+    //         endDateTime : 
+    //             "Thu Nov 08 2018 21:00:00 GMT-0500 (Eastern Standard Time)",
+    //         eventVenueName : "National Gallery of Art",
+    //         eventAddress : "East Building 4th Street NW, Washington, DC 20565",
+    //         eventLatitude : "",
+    //         eventLongitude : "",
+    //         eventWeather : {
+    //             weathDescrip : "light rain",
+    //             weathIcon : "",
+    //             lowTemp : 51.98,
+    //             highTemp : 60.98
+    //         },
+    //         ticketInfo : "Free Event, Register Here!"
+    //     }
+    // ]
     }
 
     //=========== =========== METHODS  =========== ===========//
 
-    // search EventBrite method - sends API call via API.js
-    searchEventBrite = (zip, city, state, sorting, category, date, price, keyword) => {
-        API.eventSearch(zip, city, state, sorting, category, date, price, keyword)
-            .then(res => {
-                console.log("EVENTBRITE API RESPONSE: " + JSON.stringify(res));
-
-                this.setState({ results: res.data.events });
-                this.handleEventBriteResults(this.state.results);
-                
-            })
-            .catch(err => console.log(err));
-    };
-    // END search EventBrite method
-
-
-    //search DARKSKY weather method
+    
+    //search DARKSKY weather method- to be used inside event data processing in this component
         //TODO - ADD CREDIT TO DARKSKY SOMEWHERE ON PAGE
         // DARKSKY Icon info: icon
         // A machine-readable text summary of this data point, suitable for selecting an icon for display. If defined, this property will have one of the following values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night. Be sure to also set a default.
@@ -224,7 +200,7 @@ class EventSearchResultContainer extends React.Component {
             //TODO - Weather function call here, placeholder data for now
             // console.log(this.weatherSearch(-77.03, 38.9, this.startDateStr)); //TESTING API call
             
-
+            //EVENT WEATHER PLACEHOLDER HERE
             let eventWeather = {
                 weathDescrip : "light rain",
                 weathIcon : "",
@@ -282,7 +258,9 @@ class EventSearchResultContainer extends React.Component {
 
   // When this component mounts, search the Eventbrite API based on the state
   componentDidMount() {
-    this.searchEventBrite(this.state.eventSearch.zip, this.state.eventSearch.city, this.state.eventSearch.state, this.state.eventSearch.sorting, this.state.eventSearch.category, this.state.eventSearch.date, this.state.eventSearch.price, this.state.eventSearch.keyword)
+      if (this.props.results !== []) {
+        this.handleEventBriteResults(this.props.results);
+      }
   }
 
     renderOneEvent(myEvent) {
@@ -294,18 +272,27 @@ class EventSearchResultContainer extends React.Component {
     renderAllItems() {
         const listItems = this.state.eventData.map(this.renderOneEvent);
 
-        if (listItems.length == 0) { 
+        if (listItems.length === 0) { 
             return (<div>No results found.</div>);
         }
 
-        return (<div>{listItems}</div>);
+        return (
+            <div>
+
+                <div>{listItems}</div>
+            </div>
+            
+            );
     }
 
     render() {
         return (
-            <div>{
+            <div>
+                
+                {
                 this.renderAllItems()
-            }</div>
+                }
+            </div>
         );
     }
 }
