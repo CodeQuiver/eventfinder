@@ -37,10 +37,12 @@ export default {
     return axios.get(queryURL);
   },
   weatherSearch: function(latitude, longitude, dateTime) {
-      //weather API call goes here
+      //DARKSKY weather API call goes here
       const weatherQueryURL = "https://api.darksky.net/forecast/" + WEATHAPIKEY + "/" + latitude + "," + longitude + "," + dateTime + "?exclude=currently,minutely,flags";
       console.log("DARKSKY QUERY URL: " + weatherQueryURL);
 
       return axios.get(weatherQueryURL);
+
+      // TODO - replace Darksky API call with OpenWeather API call for now, as it allows client-side requests while Darksky is more strict about the calls coming from a secure backend. Darksky is ideal as it allows predicitons for any date, but will take more setup so is assigned to the next sprint cycle.
   }
 };
