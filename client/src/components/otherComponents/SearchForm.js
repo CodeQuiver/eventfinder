@@ -119,9 +119,10 @@ class SearchForm extends React.Component {
                         </div>
                         {/* END EVENT CATEGORY */}
 
-                        {/* EVENT PRICE */}
+                        
                         <div className="row">
-                            <div className="input-field col s12">
+                            {/* EVENT PRICE */}
+                            <div className="input-field col m6 s12">
                                 <select className="price" style={{display: 'block'}}>
                                     <option disabled selected>Price</option>
                                     <option value="free">Free Event</option>
@@ -129,8 +130,20 @@ class SearchForm extends React.Component {
                                     <option value="">Both</option>
                                 </select>
                             </div>
+                            {/* END EVENT PRICE */}
+
+                            {/* SORT BY */}
+                            <div className="input-field col m6 s12">
+                                <select className="price" style={{display: 'block'}}>
+                                    <option disabled selected>Sort Results By:</option>
+                                    <option value="best">Best Match (default)</option>
+                                    <option value="paid">Distance</option>
+                                    <option value="date">Date</option>
+                                </select>
+                            </div>
+                            {/* END SORT BY */}
                         </div>
-                        {/* END EVENT PRICE */}
+
 
                         {/* SEARCH KEYWORD */}
                         <div className="row">
