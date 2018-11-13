@@ -5,7 +5,7 @@ class SearchForm extends React.Component {
 
     render() {
         return(
-            <div className = "SearchForm container">
+            <div className = "search-form container">
                 <h5>
                     Search Upcoming Events in Your Area!
                 </h5>
@@ -36,7 +36,7 @@ class SearchForm extends React.Component {
                         {/* WHERE */}
                         <div class="row">
                             <div class="input-field col m8 s12">
-                                <input placeholder="City" id="city-field" type="text" class="validate" />
+                                <input placeholder="City" id="city-field" type="text" required="required" class="validate" />
                             <label for="city-field">Where? (required)</label>
                             </div>
 
@@ -101,7 +101,7 @@ class SearchForm extends React.Component {
 
                         {/* END REQUIRED FORM SECTIONS */}
 
-                        
+                        {/* EVENT CATEGORY */}
                         <div className="row">
                             <div className="input-field col s12">
                                 <select className="categories" style={{display: 'block'}}>
@@ -117,31 +117,39 @@ class SearchForm extends React.Component {
                                 </select>
                             </div>
                         </div>
+                        {/* END EVENT CATEGORY */}
+
+                        {/* EVENT PRICE */}
                         <div className="row">
                             <div className="input-field col s12">
-                            <input id="password" type="password" className="validate" />
-                            <label for="password">Password</label>
+                                <select className="price" style={{display: 'block'}}>
+                                    <option disabled selected>Price</option>
+                                    <option value="free">Free Event</option>
+                                    <option value="paid">Paid Event</option>
+                                    <option value="">Both</option>
+                                </select>
                             </div>
                         </div>
+                        {/* END EVENT PRICE */}
+
+                        {/* SEARCH KEYWORD */}
                         <div className="row">
                             <div className="input-field col s12">
-                            <input id="email" type="email" className="validate" />
-                            <label for="email">Email</label>
+                                <input id="keyword" type="text" className="validate" />
+                                <label for="keyword">Keyword to Search (optional) - e.g. "Salsa"</label>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col s12">
-                            This is an inline input field:
-                            <div className="input-field inline">
-                                <input id="email_inline" type="email" className="validate" />
-                                <label for="email_inline">Email</label>
-                                <span className="helper-text" data-error="wrong" data-success="right">Helper text</span>
-                            </div>
-                            </div>
-                        </div>
+                        {/* END SEARCH KEYWORD*/}
+
+                        {/* SUBMIT BUTTON */}
+                        <button class="btn waves-effect waves-light" type="submit" id="submit" name="action">Submit
+                        <i class="material-icons right"></i>
+                        </button>
+                        {/* END SUBMIT BUTTON */}
                     </form>
                     {/* END EVENT SEARCH FORM */}
                 </div>
+
         
             </div>
         )
