@@ -6,7 +6,7 @@ class SearchForm extends React.Component {
     render() {
         return(
             <div className = "search-form container">
-                <h5>
+                <h5 className="center-align">
                     Search Upcoming Events in Your Area!
                 </h5>
                 

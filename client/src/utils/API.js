@@ -39,7 +39,6 @@ export default {
   weatherSearch: function(latitude, longitude, dateTime) {
       //weather API call goes here
       const weatherQueryURL = "https://api.darksky.net/forecast/" + WEATHAPIKEY + "/" + latitude + "," + longitude + "," + dateTime + "?exclude=currently,minutely,flags";
-      https://api.darksky.net/forecast/[key]/[latitude],[longitude],[time]?exclude=currently,minutely,flags
       console.log("DARKSKY QUERY URL: " + weatherQueryURL);
 
       return axios.get(weatherQueryURL);
