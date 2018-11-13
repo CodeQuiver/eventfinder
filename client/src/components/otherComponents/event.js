@@ -75,15 +75,16 @@ class Event extends React.Component {
                         <div className="card-content row">
                             <div className="card-action white" style={{margin:0 + 'px', paddingTop: 0, paddingBottom: 0}}>
                                 <div className="col s6 left-align cyan lighten-5" style={{margin:0 + 'px', paddingTop: 5 + 'px', paddingBottom: 5 + 'px'}}>
-                                    <h5 className="left-align" style={{margin:0 + 'px', padding: 5 + 'px'}}>
+                                    <h5 className="left-align" style={{margin:0 + 'px', paddingTop: 5 + 'px', paddingBottom: 5 + 'px', paddingLeft: 10 + 'px', paddingRight: 10 + ''}}>
                                         <i className="material-icons">cloud_done</i>
                                         &nbsp;RAINCHECK&nbsp;
                                         <i className="material-icons">cloud_done</i>
                                     </h5>
                                     
-                                    <small>Today's Weather at this location:</small>
                                     
-                                    <div id="weather-div">
+                                    
+                                    <div id="weather-div" style={{paddingLeft: 10 + 'px', paddingRight: 10 + 'px', paddingBottom: 10 + 'px'}}>
+                                        <small>Today's Weather at this location:</small>
                                         <div style={{fontSize: 20 + 'px', textTransform:'uppercase'}} >
                                             {this.props.eventData.eventWeather.weathDescrip}
 
@@ -101,8 +102,8 @@ class Event extends React.Component {
                                     </div>
                                 </div>
                                     
-                                <div className="col s6 right-align white" style={{margin:0 + 'px', padding: 5 + 'px'}}>
-                                    <a href={this.props.eventData.eventUrl} target="_blank" rel="noopener noreferrer">
+                                <div className="col s6 right-align white" style={{margin:0 + 'px', padding: 10 + 'px'}}>
+                                    <a href={this.props.eventData.eventUrl} target="_blank" rel="noopener noreferrer" style={{fontSize: 18 + 'px'}}>
                                         {this.props.eventData.ticketInfo}
                                     </a>
                                 </div>

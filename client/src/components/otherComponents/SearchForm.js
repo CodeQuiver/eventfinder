@@ -9,13 +9,19 @@ class SearchForm extends React.Component {
                 <h5>
                     Search Upcoming Events in Your Area!
                 </h5>
-                    
+                
+                {/* EVENT SEARCH FORM */}
                 <div className="row">
                     <form className="col s12">
+
+
+                        {/* REQUIRED FORM SECTIONS */}
+
+                        {/* WHEN */}
                         <div className="row">
                             <div className="input-field col s12">
-                                <select className="date" style={{display: 'block'}}>
-                                    <option disabled selected>When</option>
+                                <select id="date-field" className="date" required="required" style={{display: 'block'}}>
+                                    <option disabled selected>When? (required)</option>
                                     <option value="today">Today</option>
                                     <option value="tomorrow">Tomorrow</option>
                                     <option value="this_week">This Week</option>
@@ -24,20 +30,92 @@ class SearchForm extends React.Component {
                                     <option value="next_month">Next Month</option>
                                 </select>
                             </div>
-
                         </div>
+                        {/* END WHEN */}
+
+                        {/* WHERE */}
+                        <div class="row">
+                            <div class="input-field col m8 s12">
+                                <input placeholder="City" id="city-field" type="text" class="validate" />
+                            <label for="city-field">Where? (required)</label>
+                            </div>
+
+                            <div className="input-field col m4 s12">
+                                <select id="state-field" className="date" required="required" style={{display: 'block'}}>
+                                    <option disabled selected>State</option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="DC">District Of Columbia</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
+                            </div>
+                        </div>
+                        {/* END WHERE */}
+
+                        {/* END REQUIRED FORM SECTIONS */}
+
+                        
                         <div className="row">
-                            <select className="categories col s12" style={{display: 'block'}}>
-                                <option value="">Type Of Event</option>
-                                <option value="104">Film, Media &amp; Entertainment</option>
-                                <option value="110">Food &amp; Drink</option>
-                                <option value="103">Music</option>
-                                <option value="101">Business &amp; Professional</option>
-                                <option value="113">Community &amp; Culture</option>
-                                <option value="104">Media &amp; Entertainment</option>
-                                <option value="108">Sports &amp; Fitness</option>
-                                <option value="107">Health &amp; Wellness</option>
-                            </select>
+                            <div className="input-field col s12">
+                                <select className="categories" style={{display: 'block'}}>
+                                    <option disabled selected>Type Of Event</option>
+                                    <option value="104">Film, Media &amp; Entertainment</option>
+                                    <option value="110">Food &amp; Drink</option>
+                                    <option value="103">Music</option>
+                                    <option value="101">Business &amp; Professional</option>
+                                    <option value="113">Community &amp; Culture</option>
+                                    <option value="104">Media &amp; Entertainment</option>
+                                    <option value="108">Sports &amp; Fitness</option>
+                                    <option value="107">Health &amp; Wellness</option>
+                                </select>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
@@ -62,6 +140,7 @@ class SearchForm extends React.Component {
                             </div>
                         </div>
                     </form>
+                    {/* END EVENT SEARCH FORM */}
                 </div>
         
             </div>
