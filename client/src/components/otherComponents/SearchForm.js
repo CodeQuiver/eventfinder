@@ -6,9 +6,9 @@ class SearchForm extends React.Component {
     render() {
         return(
             <div className = "search-form container">
-                <h5 className="center-align">
+                <h4 className="center-align">
                     Search Upcoming Events in Your Area!
-                </h5>
+                </h4>
                 
                 {/* EVENT SEARCH FORM */}
                 <div className="row">
@@ -37,7 +37,7 @@ class SearchForm extends React.Component {
                         <div class="row">
                             <div class="input-field col m8 s12">
                                 <input placeholder="City" id="city-field" type="text" required="required" class="validate" />
-                            <label for="city-field">Where? (required)</label>
+                                <label for="city-field">Where? (required)</label>
                             </div>
 
                             <div className="input-field col m4 s12">
@@ -105,7 +105,7 @@ class SearchForm extends React.Component {
                         <div className="row">
                             <div className="input-field col s12">
                                 <select className="categories" style={{display: 'block'}}>
-                                    <option disabled selected>Type Of Event</option>
+                                    <option selected>Type Of Event</option>
                                     <option value="104">Film, Media &amp; Entertainment</option>
                                     <option value="110">Food &amp; Drink</option>
                                     <option value="103">Music</option>
@@ -124,7 +124,7 @@ class SearchForm extends React.Component {
                             {/* EVENT PRICE */}
                             <div className="input-field col m6 s12">
                                 <select className="price" style={{display: 'block'}}>
-                                    <option disabled selected>Price</option>
+                                    <option selected>Price</option>
                                     <option value="free">Free Event</option>
                                     <option value="paid">Paid Event</option>
                                     <option value="">Both</option>
@@ -135,7 +135,7 @@ class SearchForm extends React.Component {
                             {/* SORT BY */}
                             <div className="input-field col m6 s12">
                                 <select className="price" style={{display: 'block'}}>
-                                    <option disabled selected>Sort Results By:</option>
+                                    <option selected>Sort Results By:</option>
                                     <option value="best">Best Match (default)</option>
                                     <option value="paid">Distance</option>
                                     <option value="date">Date</option>
@@ -155,8 +155,10 @@ class SearchForm extends React.Component {
                         {/* END SEARCH KEYWORD*/}
 
                         {/* SUBMIT BUTTON */}
-                        <button class="btn waves-effect waves-light" type="submit" id="submit" name="action">Submit
-                        <i class="material-icons right"></i>
+                        <button class="btn waves-effect waves-light" 
+                        type="submit" id="submit"
+                         name="action"  >
+                         Submit
                         </button>
                         {/* END SUBMIT BUTTON */}
                     </form>
