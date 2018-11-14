@@ -22,7 +22,7 @@ class SearchForm extends React.Component {
                             <div className="input-field col s12">
                                 <select id="date-field" className="date"
                                 onChange={this.props.handleInputChange}
-                                value={this.props.eventSearch}
+                                
                                 required="required" style={{display: 'block'}}>
                                     <option disabled selected>When? (required)</option>
                                     <option value="today">Today</option>
@@ -41,7 +41,7 @@ class SearchForm extends React.Component {
                             <div class="input-field col m8 s12">
                                 <input placeholder="City" id="city-field" type="text" required="required" class="validate"
                                 onChange={this.props.handleInputChange}
-                                value={this.props.eventSearch} />
+                                value={this.props.eventSearch.city} />
                                 <label for="city-field">Where? (required)</label>
                             </div>
 
@@ -111,7 +111,7 @@ class SearchForm extends React.Component {
                         {/* EVENT CATEGORY */}
                         <div className="row">
                             <div className="input-field col s12">
-                                <select className="categories"
+                                <select id="categories" className="categories"
                                 onChange={this.props.handleInputChange}
                                 style={{display: 'block'}}>
                                     <option selected>Type Of Event</option>
@@ -132,7 +132,7 @@ class SearchForm extends React.Component {
                         <div className="row">
                             {/* EVENT PRICE */}
                             <div className="input-field col m6 s12">
-                                <select className="price"
+                                <select id="price" className="price"
                                 onChange={this.props.handleInputChange}
                                 style={{display: 'block'}}>
                                     <option selected>Price</option>
@@ -145,7 +145,7 @@ class SearchForm extends React.Component {
 
                             {/* SORT BY */}
                             <div className="input-field col m6 s12">
-                                <select className="price"
+                                <select id="priceSort" className="price"
                                 onChange={this.props.handleInputChange} 
                                 style={{display: 'block'}}>
                                     <option selected>Sort Results By:</option>
@@ -163,7 +163,7 @@ class SearchForm extends React.Component {
                             <div className="input-field col s12">
                                 <input id="keyword"
                                 onChange={this.props.handleInputChange}
-                                value={this.props.eventSearch}
+                                value={this.props.eventSearch.keyword}
                                 type="text" className="validate" />
                                 <label for="keyword">Keyword to Search (optional) - e.g. "Salsa"</label>
                             </div>

@@ -278,17 +278,32 @@ class EventSearchResultContainer extends React.Component {
 
         return (
             <div>
-
                 <div>{listItems}</div>
             </div>
             
             );
     }
 
+    updateMyListLater = (newResults) => {
+        console.log("new results = " + newResults.length.toString());
+        //this.setState({results: newResults});
+        this.handleEventBriteResults(newResults);
+    }
+
+    // User clicked submit button, now I must call my parent 
+    // and then update my results state
+    updateMyList = (event) => {
+        this.props.handleFormSubmit(event, this.updateMyListLater);
+    }
+
     render() {
         return (
             <div>
-                
+                <button class="btn waves-effect waves-light" 
+                            type="submit" id="submit"
+                            name="action" onClick={this.updateMyList} >
+                            Submit
+                </button>
                 {
                 this.renderAllItems()
                 }

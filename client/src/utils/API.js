@@ -16,19 +16,28 @@ const WEATHAPIKEY = darksky.secret_key;
 
 // Export an object with a "search" method that searches the Eventbrite API with the category, date, price, and keyword parameters given
 export default {
+  eventSearchValidate: function(zip, city, state) {
+    if (zip || (city && state)) {
+      return true;
+    }
+    return false; 
+  },
+  
   eventSearch: function(zip, city, state, sorting, category, date, price, keyword) {
     let location = "";
 
     // sort_by=distance&location.address=Arlington%2C+VA
     // or sort by "best"
-    
+    console.log("API.eventSearch: city  = " + city.toString());
+    console.log("API.eventSearch: state = " + state.toString());
     if (zip) {
       location = zip;
     } else if (city && state) {
       location = city + "%2C+" + state;
     } else {
-      return "Please add a location and try your search again."
-    }
+      // TODO - Make this better
+      console.log("Please add a location and try your search again.");
+    } 
 
     // Build the Eventbrite api query using the received parameters from the form as the inputs
     const queryURL = BASEURL + "location.address=" + location + "&expand=organizer,ticket_availability,venue,logo&token=" + APIKEY + "&page=1&sort_by=" + sorting + "&categories=" + category + "&start_date.keyword=" + date + "&price=" + price + "&q=" + keyword + "&include_unavailable_events=false";
