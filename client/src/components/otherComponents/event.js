@@ -84,7 +84,7 @@ class Event extends React.Component {
                                     
                                     
                                     <div id="weather-div" style={{paddingLeft: 10 + 'px', paddingRight: 10 + 'px', paddingBottom: 10 + 'px'}}>
-                                        <small>Today's Weather at this location:</small>
+                                        <small>Predicted weather:</small>
                                         <div style={{fontSize: 20 + 'px', textTransform:'uppercase'}} >
                                             {this.props.eventData.eventWeather.weathDescrip}
 
