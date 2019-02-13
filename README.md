@@ -1,2 +1,4 @@
 # eventfinder
-Event search app combining weather predictions, event search suggestions, and database to save events for later reference. Uses MERN stack.
+Event search app built in React that searches for upcoming events using a simple form, and returns the event and the predicted weather in a simple, skimmable layout. Future expansions will add a database to save events, search suggestions, and additional event-search APIs to consolidate many search engines in one. Uses MERN stack. Based on design of earlier front-end-only group project. Still in progress, but core function of form which searches Eventbrite and displays results all on one skimmable page is in place. Weather is currrently a placeholder due to limitations of available APIs that allow front-end calls. Working on a different implementation to use DarkSky weather, which has the desired future prediction function.
+
+Please see the powerpoint in the docs folder for explanation of the design stages of the project.
